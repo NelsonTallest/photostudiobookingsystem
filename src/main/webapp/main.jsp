@@ -12,7 +12,7 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background-image: url('images/background.jpg'); /* Set your image path here */
+      background-image: url('/images/studio.jpg'); /* Set your image path here */
       background-size: cover; /* Ensures the background image covers the whole screen */
       background-position: center center; /* Centers the background image */
       color: #333;
@@ -111,7 +111,7 @@
 
   <!-- Buttons for features -->
   <div class="button-container">
-    <a href="booknow.jsp" class="btn btn-custom">Book Now</a>
+    <a href="booking.jsp" class="btn btn-custom">Book Now</a>
     <a href="viewbookings.jsp" class="btn btn-custom">View Booking</a>
     <a href="makepayment.jsp" class="btn btn-custom">Make Payment</a>
     <a href="cancelbooking.jsp" class="btn btn-cancel">Cancel Booking</a>

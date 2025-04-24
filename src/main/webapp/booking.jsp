@@ -45,12 +45,12 @@
       <input type="date" class="form-control" id="eventDate" name="eventDate" required>
     </div>
     <div class="mb-3">
-      <label for="eventType" class="form-label">Event Type</label>
-      <input type="text" class="form-control" id="eventType" name="eventType" required>
+      <label for="eventType" class="form-label">Duration</label>
+      <input type="number" class="form-control" id="duration" name="duration" required>
     </div>
     <div class="mb-3">
-      <label for="duration" class="form-label">Duration (hours)</label>
-      <input type="number" class="form-control" id="duration" name="duration" required>
+      <label for="duration" class="form-label">Event Type (hours)</label>
+      <input type="text" class="form-control" id="eventType" name="eventType" required>
     </div>
     <button type="submit" class="btn btn-primary">Submit Booking</button>
   </form>
