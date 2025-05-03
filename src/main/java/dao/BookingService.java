@@ -1,6 +1,7 @@
 package dao;
 
 import model.Booking;
+import org.bson.Document;
 
 public class BookingService {
     private BookingDAO bookingDAO;
@@ -20,6 +21,14 @@ public class BookingService {
 
         // Save the booking to the database
         return bookingDAO.saveBooking(booking);
+
+
+
     }
+
+
+
+
+
 }
 

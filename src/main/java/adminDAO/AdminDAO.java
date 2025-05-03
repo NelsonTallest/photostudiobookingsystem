@@ -1,69 +1,38 @@
 package adminDAO;
 
-import com.mongodb.client.*;
-import adminModel.Admin;
-import model.User;
-import model.Booking;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import adminModel.Admin;
 import util.MongoDBConnection;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AdminDAO {
-    private MongoCollection<Document> adminCollection;
-    private MongoCollection<Document> userCollection;
-    private MongoCollection<Document> bookingsCollection;
+
+    private MongoCollection<Document> collection;
 
     public AdminDAO() {
         MongoDatabase db = MongoDBConnection.getDatabase();
-        this.adminCollection = db.getCollection("admins");    // Admin auth
-        this.userCollection = db.getCollection("users");      // User list
-        this.bookingsCollection = db.getCollection("bookings"); // Events
+        this.collection = db.getCollection("admins");
     }
 
-    // Admin login
-    public boolean login(String email, String password) {
-        Document admin = adminCollection.find(
-                new Document("email", email).append("password", password)
-        ).first();
-        return admin != null;
-    }
-
-    // View all users
-    public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-        FindIterable<Document> docs = userCollection.find();
-
-        for (Document doc : docs) {
-            User user = new User();
-            user.setFullName(doc.getString("fullName"));
-            user.setEmail(doc.getString("email"));
-            user.setPassword(doc.getString("password")); // Optional
-            users.add(user);
-        }
-        return users;
-    }
-
-
-
-    // View all events
-    public List<Booking> getAllEvents() {
-        List<Booking> events = new ArrayList<>();
-        FindIterable<Document> docs = bookingsCollection.find();
-
-        for (Document doc : docs) {
-            Booking booking = new Booking(
-                    doc.getString("fullName"),
-                    doc.getString("eventDate"),
-                    doc.getString("eventType"),
-                    doc.getString("duration")
-            );
-            events.add(booking);
+    public boolean registerAdmin(Admin admin) {
+        Document existingAdmin = collection.find(new Document("email", admin.getEmail())).first();
+        if (existingAdmin != null) {
+            return false; // Already exists
         }
 
-        return events;
+        Document newAdmin = new Document("email", admin.getEmail())
+                .append("password", admin.getPassword());
+        collection.insertOne(newAdmin);
+        return true;
     }
 
+    public boolean checkLogin(String email, String password) {
+        Document query = new Document("email", email).append("password", password);
+        return collection.find(query).first() != null;
+    }
 
+    public boolean deleteAdminByEmail(String email) {
+        return collection.deleteOne(new Document("email", email)).getDeletedCount() > 0;
+    }
 }

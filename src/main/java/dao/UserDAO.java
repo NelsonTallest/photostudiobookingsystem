@@ -34,4 +34,9 @@ public class UserDAO {
         Document query = new Document("email", email).append("password", password);
         return users.find(query).first() != null;
     }
+
+    public void deleteUserByEmail(String email) {
+        users.deleteOne(new Document("email", email));
+    }
+
 }
