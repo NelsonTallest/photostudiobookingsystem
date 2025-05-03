@@ -84,19 +84,14 @@
 
 <!-- Contact Section -->
 <div class="container section" id="contact">
-    <h2>Contact Us</h2>
-    <form>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Full Name" required>
-            </div>
-            <div class="col-md-6">
-                <input type="email" class="form-control" placeholder="Email" required>
-            </div>
-        </div>
-        <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit" class="btn btn-light mt-3">Send Message</button>
-    </form>
+
+    <!-- Contact Section -->
+    <div class="container section" id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or inquiries, click below to contact us:</p>
+        <a href="ContactServlet" class="btn btn-light mt-3">Contact Us</a>
+    </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
